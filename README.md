@@ -6,13 +6,13 @@
 
 本期我们要介绍的是Silicon Labs 公司的Thunderboard EFR32BG22，这是一款十分小巧的Demo板子，PCB做工也及其的扎实。
 
-![img](https://i.loli.net/2021/01/11/oZhHd6lONuecKy2.png)
+![img](https://gitee.com/song_zhi_shu/my-image-host/raw/master/img/oZhHd6lONuecKy2.png)
 
 板载了加速度、温湿度、霍尔、光强UV以及双声道麦克风等诸多传感器，并且支持蓝牙5.2以及蓝牙mesh，提供硬件加密解密，硬件上也做了低功耗设计可以满足开发者原型开发时候的需求。
 
 对于学生朋友来说可能对EFR系列不是那么的熟悉，其实这个系列的SOC在蓝牙模组上算得上是做的较为出众的了，在我供职的公司中就有多款民用级的蓝牙产品使用了EFR系列的SOC。
 
-![image-20210111222505172](https://i.loli.net/2021/01/11/xNStjo84UbB76fv.png)
+![image-20210111222505172](https://gitee.com/song_zhi_shu/my-image-host/raw/master/img/xtqKg6kURQyiefG.png)
 
 
 
@@ -22,7 +22,7 @@
 
 ### 任务分析
 
-![image-20210111225837992](https://i.loli.net/2021/01/11/xtqKg6kURQyiefG.png)
+![image-20210111225837992](https://gitee.com/song_zhi_shu/my-image-host/raw/master/img/xtqKg6kURQyiefG.png)
 
 任务是需要通过上位机或者其他蓝牙设备读取开发板上温湿度传感器的数据，并且经过上位机的处理之后解析显示出来，当这个温度超过门限值之后点亮板载的LED灯。
 
@@ -45,7 +45,7 @@
 
 如果你想深度去了解这款SOC的话只需要去安装[Simplicity Studio](https://cn.silabs.com/developers/simplicity-studio)，就可以了，Silicon Labs 将 EFR32BG22芯片的所有资料都放在了软件中，因此可以安装“一个软件走天下“。
 
-<img src="https://i.loli.net/2021/01/13/ionuJE4kSbX9KNH.png" alt="Snipaste_2021-01-13_22-26-39" style="zoom:80%;" />
+<img src="https://gitee.com/song_zhi_shu/my-image-host/raw/master/img/xtqKg6kURQyiefG.png" alt="Snipaste_2021-01-13_22-26-39" style="zoom:80%;" />
 
 ### 上位机资料 
 
@@ -61,19 +61,19 @@ Android版本：https://github.com/SiliconLabs/thunderboard-android
 
 我们拿到开发板之后，板子中跑了一个全外设的测试程序，可以通过手机Demo app去读取板卡上所有传感器的数据，到了这里我就萌生了划水的想法，既然demo程序这么抢到，是不是就可以跳过中间的步骤直接改个App 就交作业了？
 
-![image-20210111233136320](https://i.loli.net/2021/01/11/3dr8TvzFJZcAqps.png)
+![image-20210111233136320](https://gitee.com/song_zhi_shu/my-image-host/raw/master/img/ionuJE4kSbX9KNH.png)
 
 ## 板子中Demo被擦除了怎么办？
 
 在SI IDE中提供了两种Demo形式，一种是源文件（Examples Project），另外一种是Bin文件（Demos），因此如果你的开发板的Demo例程被擦除了只需要从新烧录下图红框中的`Bluetooth - SoC Thunderboard EFR32BG22 (BRD4184A)`这个例程的Bin文件即可。
 
-![image-20210115204554532](C:\Users\songz\Pictures\博客截图\image-20210115204554532.png)
+![image-20210115204554532](https://gitee.com/song_zhi_shu/my-image-host/raw/master/img/image-20210115204554532.png)
 
 
 
 烧录时候单击上图中的Run按钮，等待下图弹窗进度条调走完之后手动复位开发板即可。
 
-![Snipaste_2021-01-13_22-28-09](https://i.loli.net/2021/01/13/QGI81bhcery9vdm.png)
+![Snipaste_2021-01-13_22-28-09](https://gitee.com/song_zhi_shu/my-image-host/raw/master/img/QGI81bhcery9vdm.png)
 
 ## 修改APP Demo程序
 
@@ -87,13 +87,13 @@ https://www.bilibili.com/video/BV1G7411t7zs
 
 app的Demo已经提供了丰富的接口函数，我们只需要找到接口函数的位置然后调用下就好了，并不需要有太强的Java功底。我采取了一个取巧的办法，根据Demo中的Debug信息去查找接口的调用，当设备有任何动作时候都会触发回调然后打印Debug信息，如下图所示，分别是LED控制的回调打印和温度湿度上报的打印。
 
-![image-20210115205633299](https://i.loli.net/2021/01/15/WBR2MvfC5yg1Kqo.png)
+![image-20210115205633299](https://gitee.com/song_zhi_shu/my-image-host/raw/master/img/3dr8TvzFJZcAqps.png)
 
 
 
 这样我们就可以很方便的直接在温湿度实时上报的接口中增加一个阈值判断然后通过接口下发LED状态控制即可完成本次任务。修改就下面几行：
 
-![image-20210113000956361](https://i.loli.net/2021/01/13/5S1mBJ32FVMcTPH.png)
+![image-20210113000956361](https://gitee.com/song_zhi_shu/my-image-host/raw/master/img/5S1mBJ32FVMcTPH.png)
 
 
 
