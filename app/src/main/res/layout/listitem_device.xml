@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:background="@drawable/listitem_device_rounded_bg"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/device_item_height"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        style="@style/wrap"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/signal_strength"
+        android:layout_marginLeft="@dimen/space_S"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/tb_robo_medium_18dp"
+            tools:text="Thunderboard"
+            android:id="@+id/device_name"
+            android:ellipsize="end"
+            android:maxLines="2" />
+
+    </LinearLayout>
+
+    <com.silabs.thunderboard.scanner.ui.SignalStrengthIndicator
+        style="@style/wrap"
+        android:id="@+id/signal_strength"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/space_S"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>
+
